@@ -1,22 +1,13 @@
-const title = document.querySelector("div.header h1")
+const loginInput = document.querySelector("#login-form input");
+const loginBtn = document.querySelector("#login-form button");
 
-function handleTitleEvent() {
-    const body = document.querySelector("body");
-    // document.body.style.backgorundColor 이런식으로 가져오는게 가능한게 body다.. 신기하네
-    if (body.style.backgroundColor === "green") {
-        body.style.backgroundColor = "white";
+
+function buttonClicked() {
+    if (loginInput.value === "") {
+        alert("plz Login Input name");
     } else {
-        body.style.backgroundColor = "green";
+        alert("good job")
     }
-    
-
 };
-function handleWindowOffline() {
-    alert("oh no wifi plz connect")
-}
-function handleWindowOnline() {
-    alert("gob job wifi connect")
-}
-title.addEventListener("click", handleTitleEvent);
-window.addEventListener("offline", handleWindowOffline);
-window.addEventListener("online", handleWindowOnline);
+
+loginBtn.addEventListener("click", buttonClicked);
