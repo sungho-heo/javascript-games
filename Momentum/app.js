@@ -1,23 +1,15 @@
-const caculator = {
-    add: function (a, b) {
-        console.log("a + b =", a+b)
-    },
-    minus: function (a,b) {
-        console.log("a - b =",a-b)
-    },
-    division: function (a, b) {
-        console.log("a / b =", a/b)
-    },
-    multip: function (a, b) {
-        console.log("a * b =", a*b)
-    },
-    power: function (a, b) {
-        console.log("a ** b =", a**b)
+const title = document.querySelector("div.header h1")
+
+function handleTitleEvent() {
+    const body = document.querySelector("body");
+    
+    if (body.style.backgroundColor === "green") {
+        body.style.backgroundColor = "white";
+    } else {
+        body.style.backgroundColor = "green";
     }
+    
+
 };
 
-caculator.add(10,10)
-caculator.minus(10,10)
-caculator.division(10,10)
-caculator.multip(10, 10)
-caculator.power(23,10)
+title.addEventListener("click", handleTitleEvent);
