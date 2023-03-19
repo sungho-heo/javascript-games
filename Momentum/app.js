@@ -1,13 +1,12 @@
+const loginForm = document.querySelector("#login-form");
 const loginInput = document.querySelector("#login-form input");
-const loginBtn = document.querySelector("#login-form button");
 
 
-function buttonClicked() {
-    if (loginInput.value === "") {
-        alert("plz Login Input name");
-    } else {
-        alert("good job")
-    }
+function loginSubmit(event) {
+    event.preventDefault(); // 방금 일어난 일에 정보를 담은 object임.
+    console.log(loginInput.value)
 };
 
-loginBtn.addEventListener("click", buttonClicked);
+loginForm.addEventListener("submit", loginSubmit);
+
+
