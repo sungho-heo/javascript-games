@@ -2,7 +2,7 @@ const clockKey = document.querySelector("h2#user-clock");
 
 function getDateInterval() {
     const date = new Date();
-    const hours = String(date.getHours()).padStart(2,"0");
+    const hours = String(date.getHours()).padStart(2,"0"); //여기서 String으로 변환을 한 이유는 date에서 얻어오는 값은 int값이여서 padstart를 쓰기위해서는 string으로 변경해줘야함.
     const minutes = String(date.getMinutes()).padStart(2,"0");
     const seconds = String(date.getSeconds()).padStart(2,"0");
     clockKey.innerText = `${hours}:${minutes}:${seconds}`
