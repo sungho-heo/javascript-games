@@ -1,0 +1,10 @@
+.hidden {
+    display: none;
+}
+
+.clock {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    color: cornflowerblue;
+}
