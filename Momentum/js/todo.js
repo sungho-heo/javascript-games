@@ -9,11 +9,17 @@ const getToDoKey = "todos";
 function saveToDo() {
     localStorage.setItem(getToDoKey, JSON.stringify(userToDo))
 }
-
+    
 function offToDoList(event) {
     const offLi = event.target.parentElement;
     offLi.remove();
     userToDo = userToDo.filter((todo) => { return todo.id !== parseInt(offLi.id) });
+    /*위에 화살표함수를 표준 함수 사용법으로 나타내면
+    function sexyFilter(todo):{
+        return todo.id !== parseInt(offLi.id);
+    }
+    userToDo = userToDo.filter(sexyFilter) 이런식으로 나타내면 됩니다.
+    */
     saveToDo();
 }
 
