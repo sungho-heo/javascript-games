@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>How are you today?</title>
+</head>
+<body>
+    <div class="section">
+        <form class="hidden" id="login-form">
+            <input requeied maxlength="15" type="text" placeholder="What you are name?" />
+            <input type="submit" value="Log in"/>
+        </form>
+        <div class="clock">
+            <h2 id="user-clock">
+                00:00:00
+            </h2>
+        </div>
+        <h1 class="hidden" id="user-hello"></h1>
+        <form id="todo-form">
+            <input type="text" placeholder="you want todo-list" required />
+        </form>
+        <ul id="todo-list"></ul>
+        <div id="named-quotes">
+            <span></span>
+            <span></span>
+        </div>
+        <div id="weather">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <script src="js/user_login.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/quotes.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/todo.js"></script>
+    <script src="js/weather.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
+</body>
+</html>
