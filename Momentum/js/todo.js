@@ -11,17 +11,20 @@ function saveToDo() {
 }
 
 function offToDoList(event) {
-    const offli = event.target.parentElement;
-    offli.remove();
+    const offLi = event.target.parentElement;
+    offLi.remove();
+    userToDo = userToDo.filter((todo) => { return todo.id !== parseInt(offLi.id) });
+    saveToDo();
 }
 
 function createToDo(todayList) {
     const getList = document.createElement("li");
+    getList.id = todayList.id; // li 에 id값을 넣어주지않으면 li 안에 span태그 값들을 삭제하는게 어려워진다 일일히 지워야하는데 그것보다 li에 id를 줘서 한번에 지우는 작업을 해줌.
     const getSpan = document.createElement("span");
     const buttonTodo = document.createElement("input");
     buttonTodo.type = "checkbox";
     buttonTodo.addEventListener("click", offToDoList);
-    getSpan.innerText = todayList;
+    getSpan.innerText = todayList.text;
     getList.appendChild(getSpan);
     getList.appendChild(buttonTodo);
     toDoList.appendChild(getList);
@@ -30,10 +33,13 @@ function createToDo(todayList) {
 function toDoSubmit(event) {
     event.preventDefault(); 
     const newToDo = toDoInput.value;
-    console.log(toDoInput.value);
     toDoInput.value = "";
-    userToDo.push(newToDo);
-    createToDo(newToDo);
+    const newToDoObj = {
+        id: Date.now(), 
+        text: newToDo,
+    };
+    userToDo.push(newToDoObj);
+    createToDo(newToDoObj);
     saveToDo();
 };
 
