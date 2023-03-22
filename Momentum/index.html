@@ -8,30 +8,34 @@
     <title>How are you today?</title>
 </head>
 <body>
-    <div class="section">
-        <form class="hidden" id="login-form">
-            <input requeied maxlength="15" type="text" placeholder="What you are name?" />
-            <input type="submit" value="Log in"/>
-        </form>
-        <div class="clock">
-            <h2 id="user-clock">
-                00:00:00
-            </h2>
-        </div>
-        <h1 class="hidden" id="user-hello"></h1>
-        <form id="todo-form">
-            <input type="text" placeholder="you want todo-list" required />
-        </form>
-        <ul id="todo-list"></ul>
-        <div id="named-quotes">
-            <span></span>
-            <span></span>
-        </div>
-        <div id="weather">
-            <span></span>
-            <span></span>
-        </div>
-    </div>
+    <section class="home-middle">
+        <main class="middle">
+            <form class="hidden" id="login-form">
+                <input requeied maxlength="15" type="text" placeholder="What you are name?" />
+                <input type="submit" value="Log in"/>
+            </form>
+            <div id="weather">
+                <span></span>
+                <span></span>
+            </div>
+            <div class="clock">
+                <h2 id="user-clock">
+                    00:00:00
+                </h2>
+            </div>
+            <h1 class="hidden" id="user-hello"></h1>
+            <form id="todo-form">
+                <input type="text" placeholder="you want todo-list" required />
+            </form>
+            <ul id="todo-list"></ul>
+            <div class="bottom">
+                <div id="named-quotes">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </main>
+    </section>
     <script src="js/user_login.js"></script>
     <script src="js/clock.js"></script>
     <script src="js/quotes.js"></script>

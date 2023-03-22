@@ -1,29 +1,51 @@
 body {
     font-size: 100%;
+    color:#ffff;
+    font-weight: 500;
 }
-
 
 .hidden {
     display: none;
 }
 
-.section{
-    display: flex-wrap;
-    width: 100%;
+
+.home-middle{
     height: 100%;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
+
+#weather {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    right: 10;
+}
+
+#weather span {
+    padding-right: 10px;
+}
+
 #user-hello {
     display: flex;
     font-size: 40pt;
     justify-content: center;
 }
+
+.middle {
+    padding : 0 15px;
+}
+
 .clock {
     padding-top : 100px;
     display: flex;
     font-size : 50pt;
     justify-content: center;
+    align-items: center;
+    margin: -3px 0;
 }
 
 img{
