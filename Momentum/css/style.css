@@ -7,10 +7,7 @@ body {
 .hidden {
     display: none;
 }
-#login-form {
-    display: flex;
-    justify-content: center;
-}
+
 section{
     height: 100%;
     position: absolute;
@@ -30,7 +27,9 @@ section{
 #weather span {
     padding-right: 10px;
 }
-
+.bottom{
+    position: fixed;
+}
 #user-hello {
     display: flex;
     font-size: 40pt;
