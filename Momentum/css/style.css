@@ -7,9 +7,11 @@ body {
 .hidden {
     display: none;
 }
-
-
-.home-middle{
+#login-form {
+    display: flex;
+    justify-content: center;
+}
+section{
     height: 100%;
     position: absolute;
     top: 0;
@@ -34,7 +36,6 @@ body {
     font-size: 40pt;
     justify-content: center;
 }
-
 .middle {
     padding : 0 15px;
 }
