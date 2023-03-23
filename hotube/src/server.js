@@ -17,9 +17,8 @@ const handleLogin = (req, res) => {
     return res.send("welcome to login page");
 };
 
-
 app.get("/", logger,handleGet);
-app.get("/login", logger,handleLogin);
+app.get("/login", handleLogin);
 
 const handleAppListen = () => console.log(`good app:http://localhost:${PORT}/`)
 
