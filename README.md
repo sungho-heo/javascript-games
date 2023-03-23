@@ -8,3 +8,20 @@
   <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black">
 </div>  
 
+### hotube
+
+#### hotube router
+
+/ -> home
+/join -> Join
+/login -> Login
+/search -> Search
+ 
+/users/edit -> Edit User
+/users/delete -> Delete User
+
+/videos/watch -> Watch Video
+/videos/edit -> Edit Video
+/videos/delete -> Delete Video
+/videos/comments -> Comment on a Video
+/videos/comments/delete -> Delete a Comment of a Video
