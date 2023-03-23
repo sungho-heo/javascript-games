@@ -12,16 +12,19 @@
 
 #### hotube router
 
-/ -> home
-/join -> Join
-/login -> Login
-/search -> Search
- 
-/users/edit -> Edit User
-/users/delete -> Delete User
 
-/videos/watch -> Watch Video
-/videos/edit -> Edit Video
-/videos/delete -> Delete Video
-/videos/comments -> Comment on a Video
-/videos/comments/delete -> Delete a Comment of a Video
+1./ -> home
+2./join -> Join
+3./login -> Login
+4./search -> Search
+
+user router
+1./users/edit -> Edit User
+2./users/delete -> Delete User
+videos router
+
+1./videos/watch -> Watch Video
+2./videos/edit -> Edit Video
+3./videos/delete -> Delete Video
+4./videos/comments -> Comment on a Video
+5./videos/comments/delete -> Delete a Comment of a Video
