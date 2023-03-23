@@ -8,17 +8,18 @@ const handleGet = (req,res) => {
 
 };
 
-const goMiddleware = (req, res, next) => {
-    console.log(`you go next page ${req.url}`);
+const logger = (req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
     next()
 };
 
 const handleLogin = (req, res) => {
     return res.send("welcome to login page");
 };
-app.get("/", goMiddleware,handleGet);
 
-app.get("/login", handleLogin);
+
+app.get("/", logger,handleGet);
+app.get("/login", logger,handleLogin);
 
 const handleAppListen = () => console.log(`good app:http://localhost:${PORT}/`)
 
