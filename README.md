@@ -21,8 +21,8 @@
 user router
 1. /users/edit -> Edit User
 2. /users/delete -> Delete User
-videos router
 
+videos router
 1. /videos/watch -> Watch Video
 2. /videos/edit -> Edit Video
 3. /videos/delete -> Delete Video
