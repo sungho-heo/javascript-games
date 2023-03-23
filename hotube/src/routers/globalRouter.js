@@ -1,10 +1,12 @@
 import express from "express";
-import {homeVideo} from "../controller/videoController";
-import { join } from "../controller/userController";
+import {homeVideo,search} from "../controller/videoController";
+import { join,login } from "../controller/userController";
 
 const globalRouter = express.Router();
 
 globalRouter.get("/", homeVideo);
 globalRouter.get("/join", join);
+globalRouter.get("/login", login);
+globalRouter.get("/search", search);
 
 export default globalRouter;
