@@ -1,5 +1,9 @@
+const internUser = {
+    "internUser": "gogo",
+    "loginOn": true,
+}
 export const homeVideo = (req, res) => {
-    res.render("home", { pageTitle: "Home" });
+    res.render("home", { pageTitle: "Home" ,internUser:internUser});
 };
 
 export const seeVideo = (req, res) => {
