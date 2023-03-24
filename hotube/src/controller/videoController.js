@@ -1,10 +1,6 @@
-export const homeVideo = (req, res) => {
-    return res.render("home");
-};
+export const homeVideo = (req, res) => res.render("home");
 
-export const seeVideo = (req, res) => {
-    return res.send(`watch page #${req.params.id}`);
-};
+export const seeVideo = (req, res) => res.render("watch");
 
 export const edit = (req, res) => {
     return res.send("video edit page");
