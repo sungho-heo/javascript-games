@@ -1,9 +1,7 @@
 extends base.pug
+include mixins/video.pug
 
 block content
     h1 Welcome to hotube Home!
-    ul
-        each video in videos
-            li=video
-        else 
-            li sorry video not found.
+    each video in videos
+        +video(video)

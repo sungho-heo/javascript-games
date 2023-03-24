@@ -1,0 +1,8 @@
+mixin video(info)
+    div
+        h4=info.title
+        ul
+            li create By #{info.createBy}
+            li #{info.views} views.
+            li created at #{info.createdAt}
+            li comments #{info.comments}
