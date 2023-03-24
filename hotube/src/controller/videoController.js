@@ -1,9 +1,9 @@
 export const homeVideo = (req, res) => {
-    return res.send("Video home");
+    return res.render("home");
 };
 
 export const seeVideo = (req, res) => {
-    return res.send("watch page");
+    return res.send(`watch page #${req.params.id}`);
 };
 
 export const edit = (req, res) => {
