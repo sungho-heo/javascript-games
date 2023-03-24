@@ -1,8 +1,14 @@
-export const homeVideo = (req, res) => res.render("home");
+export const homeVideo = (req, res) => {
+    res.render("home", { pageTitle: "Home" });
+};
 
-export const seeVideo = (req, res) => res.render("watch");
+export const seeVideo = (req, res) => {
+    res.render("watch", { pageTitle: "Watch" });
+};
 
-export const edit = (req, res) => res.render("edit");
+export const edit = (req, res) => {
+    res.render("edit", { pageTitle: "Edit" });
+};
 
 export const search = (req, res) => {
     return res.send("video search page");
