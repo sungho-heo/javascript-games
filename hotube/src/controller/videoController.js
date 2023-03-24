@@ -1,40 +1,46 @@
-const videos = [
+let videos = [
   {
     title: "god die",
     createBy: "GOD",
     views: 12,
     createdAt: "2 minutes",
-    comments: 12,
+    comments: 12,   
+    id: 1,
   },
   {
     title: "god secode die",
     createBy: "GOD",
     views: 12,
     createdAt: "2 minutes",
-    comments: 12,
+    comments: 20,
+    id: 2
   },
   {
     title: "god third die",
     createBy: "GOD",
     views: 12,
     createdAt: "2 minutes",
-    comments: 12,
+    comments: 2,
+    id: 3
   },
   {
     title: "god fourth die",
     createBy: "GOD",
     views: 12,
     createdAt: "2 minutes",
-    comments: 12,
+    comments: 5,
+    id: 4
   },
 
 ]
 export const homeVideo = (req, res) => {
-    res.render("home", { pageTitle: "Home" ,videos:videos });
+    return res.render("home", { pageTitle: "Home" ,videos:videos });
 };
 
 export const seeVideo = (req, res) => {
-    res.render("watch", { pageTitle: "Watch" });
+    const id = req.params.id;
+    const videoId = videos[id - 1]; 
+    return res.render("watch", { pageTitle: "Watch", videoId: videoId });
 };
 
 export const edit = (req, res) => {
