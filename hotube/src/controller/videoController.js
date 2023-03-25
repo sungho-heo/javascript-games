@@ -40,11 +40,13 @@ export const homeVideo = (req, res) => {
 export const seeVideo = (req, res) => {
     const id = req.params.id;
     const videoId = videos[id - 1]; 
-    return res.render("watch", { pageTitle: "Watch", videoId: videoId });
+    return res.render("watch", { pageTitle: `Watching: ${videoId.title}`, videoId: videoId });
 };
 
 export const edit = (req, res) => {
-    res.render("edit", { pageTitle: "Edit" });
+    const id = req.params.id
+    const videoId = videos[id - 1] 
+    return res.render("edit", { pageTitle: `Editing: ${videoId.title}`, videoId: videoId });
 };
 
 export const search = (req, res) => {
