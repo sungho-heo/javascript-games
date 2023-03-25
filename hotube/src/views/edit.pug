@@ -3,5 +3,5 @@ extends base.pug
 block content 
     h4 Chagne the Video of title
     form(method="POST")
-        input(placeholder="Chage the title" value=videoId.title, required)
+        input(name="title" placeholder="Chage the title" value=videoId.title, required)
         input(value="save",type="submit",) 

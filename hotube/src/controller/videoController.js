@@ -44,13 +44,16 @@ export const seeVideo = (req, res) => {
 };
 
 export const getEdit = (req, res) => {
-    const id = req.params.id
-    const videoId = videos[id - 1] 
+  const id = req.params.id;
+  const videoId = videos[id - 1];
     return res.render("edit", { pageTitle: `Editing: ${videoId.title}`, videoId: videoId });
 };
 
 export const postEdit = (req, res) => {
-  return res.send("what post edit");
+  const id = req.params.id;
+  const title = req.body.title;
+  videos[id - 1].title = title;
+  return res.redirect(`/videos/${id}`);
 };
 
 export const search = (req, res) => {
