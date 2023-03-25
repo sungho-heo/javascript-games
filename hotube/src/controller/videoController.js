@@ -56,14 +56,10 @@ export const postEdit = (req, res) => {
   return res.redirect(`/videos/${id}`);
 };
 
-export const search = (req, res) => {
-    return res.send("video search page");
+export const getUpload = (req, res) => {
+  return res.render("upload", { pageTitle: "Upload Video" });
 };
 
-export const deleteVideo = (req, res) => {
-    return res.send("video delete page");
-};
-
-export const upload = (req, res) => {
-    return res.send("video upload page");
+export const postUpload = (req, res) => {
+  return res.redirect("/");
 };
