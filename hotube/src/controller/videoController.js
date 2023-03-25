@@ -1,7 +1,8 @@
 import Video from "../models/Video";
 
-export const homeVideo = (req, res) => {
-  Video.find({}, (error, videos) => {});
+export const homeVideo = async (req, res) => {
+  const video = await Video.find({});
+  console.log(video.error);
     return res.render("home", { pageTitle: "Home" });
 };
 
