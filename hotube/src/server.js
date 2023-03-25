@@ -1,12 +1,9 @@
-import "./db";
-import "./models/Video";
 import express from "express";
 import morgan from "morgan";
 import globalRouter from "./routers/globalRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
 
-const PORT = 4000;
 const app = express();
 
 const loggerMorgan = morgan("dev");
@@ -19,6 +16,4 @@ app.use("/", globalRouter); // home url router의 /안의 또다른 url router�
 app.use("/users", userRouter); // userrouter 안에 있는 url router를 찾음 해당하는 페이지를 찾으면 그 해당하는 페이지를 보여줌.
 app.use("/videos", videoRouter);
 
-const handleAppListen = () => console.log(`good app:http://localhost:${PORT}/`);
-
-app.listen(PORT, handleAppListen);
+export default app;
