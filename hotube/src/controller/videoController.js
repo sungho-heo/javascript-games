@@ -32,7 +32,7 @@ export const postUpload = async(req, res) => {
   const description = req.body.description;
   const createdBy = req.body.createdBy;
   const hashtags = req.body.hashtags;
-  Video.create({
+  await Video.create({
     title: title,
     description: description,
     createdBy: createdBy,
