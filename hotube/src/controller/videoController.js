@@ -29,14 +29,17 @@ export const postEdit = async(req, res) => {
   const title = req.body.title;
   const description = req.body.description;
   const hashtags = req.body.hashtags;
-  const video = await Video.findById(id);
+  const video = await Video.exists({ _id: id });
   if (video === null) {
     return res.render("404", { pageTitle: "Video not found" })  
   }
-  video.title = title;
-  video.description = description;
-  video.hashtags = hashtags.split(",").map((word) => (word.startsWith("#") ? word : `#${word}`));
-  await video.save();
+  await Video.findByIdAndUpdate(id, {
+    title: title,
+    description: description,
+    hashtags: hashtags
+      .split(",")
+      .map((word) => (word.startsWith("#") ? word : `#${word}`)),
+  })
   return res.redirect(`/videos/${id}`);
 };
 
