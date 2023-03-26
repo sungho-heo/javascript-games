@@ -5,5 +5,8 @@ mixin video(video)
         p=video.description
         p #{video.meta.views} #{video.meta.views ===1 || video.meta.views ===0 ? "view" : "views"}
         p #{video.meta.rating}/5 rating
+        ul
+            each hashtags in video.hashtags
+                li=hashtags
         small=video.createdAt
         hr  
