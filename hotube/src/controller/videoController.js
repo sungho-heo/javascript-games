@@ -68,3 +68,10 @@ export const deleteVideo = async (req, res) => {
   await Video.findByIdAndDelete(id);
   return res.redirect("/");
 };
+
+export const search = (req, res) => {
+  console.log(req.query);
+  const keyword = req.query.keyword;
+  // if (keyword !== Video.findOne(keyword)) {}
+  return res.render("search", { pageTitle: "Search" });
+};
