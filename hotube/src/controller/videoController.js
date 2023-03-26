@@ -57,7 +57,7 @@ export const postUpload = async(req, res) => {
       title: title,
       description: description,
       createdBy: createdBy,
-      hashtags: hashtags.split(",").map((word) => (word.startsWith("#") ? word : `#${word}`)),
+      hashtags: hashtags,
     })
   } catch (error) {
     return res.render("upload", { pageTitle: "Upload Video", errorMessage: error._message });
