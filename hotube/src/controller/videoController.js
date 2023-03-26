@@ -3,7 +3,6 @@ import Video from "../models/Video";
 // callback 방식을 사용하려는데 최신버전은 callback문법을 사용할수없어서 promise로 구현함.
 export const homeVideo = async (req, res) => {
   const videos = await Video.find({});
-  console.log(videos);
   return res.render("home", { pageTitle: "Home", videos: videos });
 };
 
@@ -32,16 +31,15 @@ export const postUpload = async(req, res) => {
   const description = req.body.description;
   const createdBy = req.body.createdBy;
   const hashtags = req.body.hashtags;
-  await Video.create({
-    title: title,
-    description: description,
-    createdBy: createdBy,
-    createdAt: Date.now(),
-    hashtags: hashtags.split(",").map(word => `#${word}`),
-    meta: {
-      rating: 0,
-      views: 0,
-    },
-  });
+  try {
+    await Video.create({
+      title: title,
+      description: description,
+      createdBy: createdBy,
+      hashtags: hashtags.split(",").map((word) => `#${word}`),
+    })
+  } catch (error) {
+    return res.render("upload", { pageTitle: "Upload Video", errorMessage: error._message });
+  }
   return res.redirect("/");
 };
