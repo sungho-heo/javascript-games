@@ -56,7 +56,7 @@ export const postUpload = async(req, res) => {
       description: description,
       createdBy: createdBy,
       hashtags: Video.formatHashtags(hashtags),
-    })
+    });
   } catch (error) {
     return res.status(400).render("upload", { pageTitle: "Upload Video", errorMessage: error._message });
   }

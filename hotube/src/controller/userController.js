@@ -17,7 +17,7 @@ export const postJoin = async (req, res) => {
       errorMessage: "Password confirmation does not match ",
     });
   };
-  const exists = User.exists({
+  const exists = await User.exists({
     $or: [{ email: email, username: username, nickname: nickname }],
   });
   if (exists) {
@@ -26,15 +26,34 @@ export const postJoin = async (req, res) => {
       errorMessage: "The email/username/nickname alrady taken",
     });
   };
-  await User.create({
-    email: email,
-    username: username,
-    password: password,
-    nickname: nickname,
-    location: location,
-  });
+  try {
+    await User.create({
+      email: email,
+      username: username,
+      password: password,
+      nickname: nickname,
+      location: location,
+    });
+  } catch (error) {
+    return res
+      .status(400)
+      .render("join", { pageTitle: pageTitle, errorMessage: error._message });
+  }
   return res.redirect("/login");
-}
+};
+export const getLogin = (req, res) => {
+  return res.render("login", {pageTitle:"Log in"});
+};
+
+export const postLogin = async (req, res) => {
+  const username = req.body.username;
+  const exists = await User.exists({ username: username });
+  if (!exists) {
+    return res.status(400).render("login", { pageTitle: "Log in", errorMessage: "An account with this username does not exists." });
+  }  
+  res.end()
+};
+
 export const edit = (req, res) => {
   return res.send("user-edit page");
 };
@@ -43,9 +62,6 @@ export const userDelete = (req, res) => {
   return res.send("user-delete page");
 };
 
-export const login = (req, res) => {
-  return res.send("user-login page");
-};
 
 export const seeUser = (req, res) => {
     return res.send("see-user page");
