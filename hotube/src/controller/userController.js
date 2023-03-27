@@ -12,7 +12,7 @@ export const postJoin = async (req, res) => {
   const location = req.body.location;
   const pageTitle = "Join";
   if (password !== password2) {
-    return res.render("join", {
+    return res.status(400).render("join", {
       pageTitle: pageTitle,
       errorMessage: "Password confirmation does not match ",
     });
@@ -21,7 +21,7 @@ export const postJoin = async (req, res) => {
     $or: [{ email: email, username: username, nickname: nickname }],
   });
   if (exists) {
-    return res.render("join", {
+    return res.status(400).render("join", {
       pageTitle: pageTitle,
       errorMessage: "The email/username/nickname alrady taken",
     });
