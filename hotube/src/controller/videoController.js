@@ -70,7 +70,6 @@ export const deleteVideo = async (req, res) => {
 };
 
 export const search = async(req, res) => {
-  console.log(req.query);
   let video = [];
   const keyword = req.query.keyword;
   if (keyword) {
