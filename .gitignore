@@ -3,3 +3,5 @@ momentum/js/config.js
 
 #node mdules
 hotube/node_modules
+#env
+hotube/.env
