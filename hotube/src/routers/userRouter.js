@@ -13,7 +13,7 @@ const userRouter = express.Router();
 userRouter.get("/:id", seeUser);
 userRouter.get("/logout", logout);
 userRouter.get("/github/login", githubLogin);
-userRouter.get("/github/callbck", githubCallback);
+userRouter.get("/github/callback", githubCallback);
 userRouter.get("/edit", edit);
 userRouter.get("/delete", userDelete);
 

@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import fetch from "cross-fetch";
 import bcrypt from "bcrypt";
 
 export const getJoin = (req, res) => {
@@ -76,29 +77,42 @@ export const githubLogin = (req, res) => {
     client_id: process.env.GH_ID,
     allow_signup: false,
     scope: "read:user user:email",
-  }
-  const parms = new URLSearchParams(config).toString();
-  const connectUrl = `${baseUrl}?${parms}`;
+  };
+  const params = new URLSearchParams(config).toString();
+  const connectUrl = `${baseUrl}?${params}`;
   return res.redirect(connectUrl);
 };
 
 export const githubCallback = async (req, res) => {
-  const baseUrl = "https://github.com/login/oauth/authorize";
+  const baseUrl = "https://github.com/login/oauth/access_token";
   const config = {
     client_id: process.env.GH_ID,
     client_secret: process.env.GH_SECRET,
     code: req.query.code,
   };
-  const parms = new URLSearchParams(config).toString();
-  const connectUrl = `${baseUrl}?${parms}`;
-  const data = await fatch(connectUrl, {
+  const params = new URLSearchParams(config).toString();
+  const connectUrl = `${baseUrl}?${params}`;
+  const getToken =await (await fetch(connectUrl, {
     method: "POST",
     headers: {
-      Accept: "application / json",
+      Accept: "application/json",
     },
-  });
-  const json = await data.json()
-  return res.end();
+  })
+  ).json();
+  if ("access_token" in getToken) {
+    const accessToken = getToken.access_token;
+    const getRequestUrl = "https://api.github.com/user";
+    const userRequest = await (
+      await fetch(getRequestUrl, {
+      headers: {
+        Authorization: `token ${accessToken}`,
+      },
+      })
+    ).json();
+    console.log(userRequest);
+  } else {
+    return res.redirect("/login");
+  }
 };
 
 export const edit = (req, res) => {
