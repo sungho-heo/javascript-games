@@ -110,7 +110,6 @@ export const githubCallback = async (req, res) => {
       },
       })
     ).json();
-    console.log(userRequest);
     const emailRequest = await (await fetch(`${getRequestUrl}/user/emails`, {
       headers: {
         Authorization: `token ${accessToken}`,
@@ -159,11 +158,29 @@ export const postEdit = async(req, res) => {
   const username = req.body.username;
   const nickname = req.body.nickname;
   const location = req.body.location;
-  await User.findByIdAndUpdate(id,{
-    email: email,
-    username: username,
-    nickname: nickname,
-    location: location,
-  })
-  return res.render("edit-profile");
+  const updateEmail = req.session.user.email;
+  const updateUsername = req.session.user.username;
+  if (email !== updateEmail || username !== updateUsername) {
+    const findUser = await User.findOne({
+      $or: [{ email: updateEmail, username: updateUsername }],
+    });
+    if (findUser) {
+      return res.status(400).render("edit-profile", {
+        pageTitle: "Edit-Profile",
+        errorMessage: `${email}/${username} is already token`,
+      })
+    };
+  };
+  const userUpdate = await User.findByIdAndUpdate(
+    id,
+    {
+      email: email,
+      username: username,
+      nickname: nickname,
+      location: location,
+    },
+    { new: true }
+  )
+  req.session.user = userUpdate
+  return res.render("edit-profile", {pageTitle: "Edit-Profile"});
 };
