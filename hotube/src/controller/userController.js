@@ -149,7 +149,7 @@ export const logout = (req, res) => {
 };
 
 export const getEdit = (req, res) => {
-  return res.render("edit-profile", {pageTitle:"Edit-Profile"});
+  return res.render("users/edit-profile", {pageTitle:"Edit-Profile"});
 };
 
 export const postEdit = async(req, res) => {
@@ -165,7 +165,7 @@ export const postEdit = async(req, res) => {
       $or: [{ email: updateEmail, username: updateUsername }],
     });
     if (findUser) {
-      return res.status(400).render("edit-profile", {
+      return res.status(400).render("users/edit-profile", {
         pageTitle: "Edit-Profile",
         errorMessage: `${email}/${username} is already token`,
       })
@@ -182,5 +182,16 @@ export const postEdit = async(req, res) => {
     { new: true }
   )
   req.session.user = userUpdate
-  return res.render("edit-profile", {pageTitle: "Edit-Profile"});
+  return res.render("users/edit-profile", {pageTitle: "Edit-Profile"});
+};
+
+export const getChangePassword = (req, res) => {
+  if (req.session.user.socialOnly) {
+    return res.redirect("/")
+  }
+  return res.render("users/change-password", { pageTitle: "Change-Password" });
+};
+
+export const postChangePassword = (req, res) => {
+  return res.render("users/change-password", { pageTitle: "Change-Password" });
 };
