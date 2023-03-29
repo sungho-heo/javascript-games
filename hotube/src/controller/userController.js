@@ -101,15 +101,24 @@ export const githubCallback = async (req, res) => {
   ).json();
   if ("access_token" in getToken) {
     const accessToken = getToken.access_token;
-    const getRequestUrl = "https://api.github.com/user";
+    const getRequestUrl = "https://api.github.com";
     const userRequest = await (
-      await fetch(getRequestUrl, {
+      await fetch(`${getRequestUrl}/user`, {
       headers: {
         Authorization: `token ${accessToken}`,
       },
       })
     ).json();
     console.log(userRequest);
+    const emailRequest = await (await fetch(`${getRequestUrl}/user/emails`, {
+      headers: {
+        Authorization: `token ${accessToken}`,
+      },
+    })).json();
+    const email = emailRequest.find((email) => email.primary === true && email.verified === true);
+    if (!email) {
+      return res.redirect("/login");
+    };
   } else {
     return res.redirect("/login");
   }
