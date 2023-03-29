@@ -1,5 +1,6 @@
 export const middleware = (req, res, next) => {
     res.locals.loggedIn = Boolean(req.session.loggedIn);
+    console.log(req.session.user);
     res.locals.user = req.session.user || {};
     next();
 };
