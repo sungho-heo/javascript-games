@@ -1,0 +1,10 @@
+extends base.pug
+
+block content
+    h4 Edit Profile
+    form(method="POST") 
+        input(type="email" name="email",required, value=user.email)
+        input(type="text", name="username",required, value=user.username)
+        input(type="text" name="nickname",required value=user.nickname)
+        input(type="text", name="location", value=user.location)
+        input(type="submit", value="Edit-Profile")

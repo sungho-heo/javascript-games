@@ -143,11 +143,16 @@ export const githubCallback = async (req, res) => {
     return res.redirect("/login");
   }
 };
+
 export const logout = (req, res) => {
   req.session.destroy();
   return res.redirect("/");
 };
 
-export const edit = (req, res) => {
-  return res.send("user-edit page");
+export const getEdit = (req, res) => {
+  return res.render("edit-profile", {pageTitle:"Edit-Profile"});
+};
+
+export const postEdit = (req, res) => {
+  return res.render("edit-profile");
 };
