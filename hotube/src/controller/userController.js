@@ -60,6 +60,7 @@ export const postLogin = async (req, res) => {
         errorMessage: "An account with this username does not exists.",
       })
   }
+  // 해싱된 password와 사용자가 적은 password가 일치하는지 확인을 위해 사용자가 적은 password또한 해싱을 진행후 동일한 password인지 확인함.
   const checkPassword = await bcrypt.compare(password, user.password);
   if (!checkPassword) {
     return res
@@ -117,19 +118,24 @@ export const githubCallback = async (req, res) => {
     })).json();
     const emailObj = emailRequest.find((email) => email.primary === true && email.verified === true);
     if (!emailObj) {
-      return res.redirect("/login");
+      return res.redirect("/login", { errorMessage: "Email doesn't exist." });
     }
     let user = await User.findOne({ email: emailObj.email });
     if (!user) {
-        user = await User.create({
+/* 
+    db에서 유저가 해당사이트의 가입을한 회원인지 확인을 하기위함 해당 가입 유저일경우 email값이 github와 일치시 바로 로그인 진행 불일치시
+    깃허브에서 데이터를 받아와서 가입 진행후 바로 로그인해줌.
+*/
+      user = await User.create({
         username: userRequest.login,
+        avatar_url: userRequest.avatar_url,
         email: emailObj.email,
         nickname: userRequest.name,
         password: "",
         socialOnly: true,
         location: userRequest.location,
       });
-    }
+    };
     req.session.loggedIn = true;
     req.session.user = user;
     return res.redirect("/");
