@@ -6,14 +6,15 @@ import {
   githubLogin,
   githubCallback,
 } from "../controller/userController"
+import { userProtectMiddleware,publicMiddleware } from "../middlewares";
 
 const userRouter = express.Router();
 
 
-userRouter.get("/logout", logout);
-userRouter.get("/github/login", githubLogin);
-userRouter.get("/github/callback", githubCallback);
-userRouter.route("/edit").get(getEdit).post(postEdit);
+userRouter.get("/logout", userProtectMiddleware,logout);
+userRouter.get("/github/login", publicMiddleware,githubLogin);
+userRouter.get("/github/callback",publicMiddleware, githubCallback);
+userRouter.route("/edit").all(userProtectMiddleware).get(getEdit).post(postEdit);
 
 
 
