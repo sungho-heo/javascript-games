@@ -115,10 +115,28 @@ export const githubCallback = async (req, res) => {
         Authorization: `token ${accessToken}`,
       },
     })).json();
-    const email = emailRequest.find((email) => email.primary === true && email.verified === true);
-    if (!email) {
+    const emailObj = emailRequest.find((email) => email.primary === true && email.verified === true);
+    if (!emailObj) {
       return res.redirect("/login");
-    };
+    }
+    const userEmail = await User.findOne({ email: emailObj.email });
+    if (!userEmail) {
+      const user = await User.create({
+        username: userRequest.login,
+        email: emailObj.email,
+        nickname: userRequest.name,
+        password: "",
+        socialOnly: true,
+        location: userRequest.location,
+      })
+      req.session.loggedIn = true;
+      req.session.user = user;
+      return res.redirect("/");
+    } else {
+      req.session.loggedIn = true;
+      req.session.user = userEmail;
+      res.rediect("/");
+    }
   } else {
     return res.redirect("/login");
   }

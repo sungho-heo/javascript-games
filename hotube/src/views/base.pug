@@ -9,11 +9,7 @@ html(lang="ko")
             nav
                 ul
                     li
-                        a(href="/videos/upload") Upload
-                    li
                         a(href="/") Home
-                    li
-                        a(href="/search") Search
                     if loggedIn
                         li
                             a(href="/logout") Logout
@@ -24,6 +20,10 @@ html(lang="ko")
                             a(href="/join") Join
                         li
                             a(href="/login") Log in
+                    li
+                        a(href="/videos/upload") Upload
+                    li
+                        a(href="/search") Search
         main
             block content
     include partials/footer.pug
