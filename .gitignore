@@ -5,3 +5,5 @@ momentum/js/config.js
 hotube/node_modules
 #env
 hotube/.env
+#uploads
+hotube/uploads

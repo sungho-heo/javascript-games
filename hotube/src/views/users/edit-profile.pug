@@ -5,6 +5,7 @@ block content
         span=errorMessage
     h4 Edit Profile
     div
+        img(src="/"+ user.avatarUrl, width="100", height="100")
         form(method="POST",enctype="multipart/form-data") 
             label(for="avatar") Avatar
             input(type="file", id="avatar", name="avatar" ,accept="image/*")
