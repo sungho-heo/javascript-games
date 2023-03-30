@@ -7,7 +7,8 @@ import {
   githubCallback,
   getChangePassword,
   postChangePassword,
-} from "../controller/userController";
+  userProfile,
+} from "../controller/userController"
 import {
   userProtectMiddleware,
   publicMiddleware,
@@ -15,7 +16,6 @@ import {
 } from "../middlewares";
 
 const userRouter = express.Router();
-
 
 userRouter.get("/logout", userProtectMiddleware,logout);
 userRouter.get("/github/login", publicMiddleware, githubLogin);
@@ -30,6 +30,9 @@ userRouter
   .all(userProtectMiddleware)
   .get(getEdit)
   .post(uploadAvatar.single("avatar"), postEdit);
+
+userRouter.get("/:id([0-9a-f]{24})", userProfile);
+
 
 
 
