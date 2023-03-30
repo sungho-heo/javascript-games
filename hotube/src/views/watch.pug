@@ -7,5 +7,5 @@ block content
         small=video.createdAt
         p #{video.meta.views} #{video.meta.views ===1 || video.meta.views===0 ? "view" : "views"}
         hr
-    if loggedIn
+    if String(video.owner) === String(user._id)
         a(href=`${video.id}/edit`) Edit video &rarr;

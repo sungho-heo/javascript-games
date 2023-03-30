@@ -1,4 +1,5 @@
 import Video from "../models/Video";
+import User from "../models/User";
 
 // callback 방식을 사용하려는데 최신버전은 callback문법을 사용할수없어서 promise로 구현함.
 export const homeVideo = async (req, res) => {
@@ -9,10 +10,11 @@ export const homeVideo = async (req, res) => {
 export const watch = async(req, res) => {
   const id = req.params.id;
   const video = await Video.findById(id);
+  const owner = await User.findById(video.owner);
   if (video === null) {
     return res.status(404).render("404", { pageTitle: "Video not found" });
   }
-  return res.render("watch", { pageTitle: video.title, video: video});
+  return res.render("watch", { pageTitle: video.title, video: video,owner: owner });
 };
 
 export const getEdit = async(req, res) => {
@@ -46,17 +48,17 @@ export const getUpload = (req, res) => {
 };
 
 export const postUpload = async (req, res) => {
+  const owner = req.session.user._id;
   const fileUrl = req.file;
   const title = req.body.title;
   const description = req.body.description;
-  const createdBy = req.body.createdBy;
   const hashtags = req.body.hashtags;
   try {
     await Video.create({
       title: title,
+      owner: owner,
       fileUrl: fileUrl.path,
       description: description,
-      createdBy: createdBy,
       hashtags: Video.formatHashtags(hashtags),
     });
   } catch (error) {
