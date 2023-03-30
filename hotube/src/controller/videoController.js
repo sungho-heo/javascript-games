@@ -47,19 +47,22 @@ export const getUpload = (req, res) => {
 };
 
 export const postUpload = async (req, res) => {
-  const owner = req.session.user._id;
+  const id = req.session.user._id;
   const fileUrl = req.file;
   const title = req.body.title;
   const description = req.body.description;
   const hashtags = req.body.hashtags;
   try {
-    await Video.create({
+    const updateVideo = await Video.create({
       title: title,
-      owner: owner,
+      owner: id,
       fileUrl: fileUrl.path,
       description: description,
       hashtags: Video.formatHashtags(hashtags),
     });
+    const user = await User.findById(id);
+    user.videos.push(updateVideo.id);
+    user.save();
   } catch (error) {
     return res.status(400).render("videos/upload", { pageTitle: "Upload Video", errorMessage: error._message });
   }
