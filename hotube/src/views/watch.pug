@@ -7,4 +7,5 @@ block content
         small=video.createdAt
         p #{video.meta.views} #{video.meta.views ===1 || video.meta.views===0 ? "view" : "views"}
         hr
-    a(href=`${video.id}/edit`) Edit video &rarr;
+    if loggedIn
+        a(href=`${video.id}/edit`) Edit video &rarr;
