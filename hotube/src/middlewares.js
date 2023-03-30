@@ -1,3 +1,4 @@
+import multer from "multer";
 export const middleware = (req, res, next) => {
     res.locals.loggedIn = Boolean(req.session.loggedIn);
     res.locals.user = req.session.user || {};
@@ -19,3 +20,5 @@ export const publicMiddleware = (req, res, next) => {
         return res.redirect("/");
     }
 };
+
+export const acceptImageFile = multer({dest:"uploads/"})

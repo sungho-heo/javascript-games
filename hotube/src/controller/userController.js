@@ -152,7 +152,7 @@ export const getEdit = (req, res) => {
   return res.render("users/edit-profile", {pageTitle:"Edit-Profile"});
 };
 
-export const postEdit = async(req, res) => {
+export const postEdit = async (req, res) => {
   const id = req.session.user._id;
   const email = req.body.email;
   const username = req.body.username;
@@ -160,6 +160,8 @@ export const postEdit = async(req, res) => {
   const location = req.body.location;
   const updateEmail = req.session.user.email;
   const updateUsername = req.session.user.username;
+  const file = req.file;
+  console.log(file);
   if (email !== updateEmail || username !== updateUsername) {
     const findUser = await User.findOne({
       $or: [{ email: updateEmail, username: updateUsername }],

@@ -8,7 +8,7 @@ import {
   getChangePassword,
   postChangePassword,
 } from "../controller/userController"
-import { userProtectMiddleware,publicMiddleware } from "../middlewares";
+import { userProtectMiddleware,publicMiddleware, acceptImageFile } from "../middlewares";
 
 const userRouter = express.Router();
 
@@ -21,7 +21,7 @@ userRouter
   .get(getChangePassword)
   .post(postChangePassword);
 userRouter.get("/github/callback",publicMiddleware, githubCallback);
-userRouter.route("/edit").all(userProtectMiddleware).get(getEdit).post(postEdit);
+userRouter.route("/edit").all(userProtectMiddleware).get(getEdit).post(acceptImageFile.single("avatar"),postEdit);
 
 
 
