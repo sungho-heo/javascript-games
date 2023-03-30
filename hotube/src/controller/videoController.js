@@ -6,7 +6,7 @@ export const homeVideo = async (req, res) => {
   return res.render("home", { pageTitle: "Home", videos: videos });
 };
 
-export const seeVideo = async(req, res) => {
+export const watch = async(req, res) => {
   const id = req.params.id;
   const video = await Video.findById(id);
   if (video === null) {
@@ -45,7 +45,8 @@ export const getUpload = (req, res) => {
   return res.render("videos/upload", { pageTitle: "Upload Video" });
 };
 
-export const postUpload = async(req, res) => {
+export const postUpload = async (req, res) => {
+  const fileUrl = req.file;
   const title = req.body.title;
   const description = req.body.description;
   const createdBy = req.body.createdBy;
@@ -53,6 +54,7 @@ export const postUpload = async(req, res) => {
   try {
     await Video.create({
       title: title,
+      fileUrl: fileUrl.path,
       description: description,
       createdBy: createdBy,
       hashtags: Video.formatHashtags(hashtags),
