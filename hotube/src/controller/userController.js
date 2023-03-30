@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Video from "../models/Video.js";
 import fetch from "cross-fetch";
 import bcrypt from "bcrypt";
 
@@ -217,8 +218,12 @@ export const postChangePassword = async (req, res) => {
   return res.redirect("/users/logout");
 };
 
-export const userProfile = async(req, res) => {
-  const userid = req.session.user._id;
-  const user = await User.findById(userid);
-  return res.render("users/profile", { pageTitle: user.username, user: user } );
+export const userProfile = async (req, res) => {
+  const id = req.params.id;
+  const user = await User.findById(id);
+  if (!user) {
+    return res.status(404).render("404", { pageTitle: "User not found" });
+  }
+  const video = await Video.find({owener: user._id})
+  return res.render("users/profile", { pageTitle: user.username, user: user, videos:video} );
 };
