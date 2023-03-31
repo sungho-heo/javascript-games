@@ -7,7 +7,8 @@
     "url": "git+https://github.com/sungho-heo/javascript-games.git"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/init.js"
+    "dev": "nodemon --exec babel-node src/init.js",
+    "assets": "webpack --config webpack.config.js ",
   },
   "keywords": [
     "ho"
@@ -34,6 +35,8 @@
     "@babel/core": "^7.21.3",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.21",
+    "webpack": "^5.77.0",
+    "webpack-cli": "^5.0.1"
   }
 }
