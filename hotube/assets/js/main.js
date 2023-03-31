@@ -9,13 +9,13 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/frontend/js/main.js":
-/*!*********************************!*\
-  !*** ./src/frontend/js/main.js ***!
-  \*********************************/
+/***/ "./src/client/js/main.js":
+/*!*******************************!*\
+  !*** ./src/client/js/main.js ***!
+  \*******************************/
 /***/ (() => {
 
-eval("\n\n//# sourceURL=webpack://hotube/./src/frontend/js/main.js?");
+eval("alert(\"hi\");\n\n//# sourceURL=webpack://hotube/./src/client/js/main.js?");
 
 /***/ })
 
@@ -26,7 +26,7 @@ eval("\n\n//# sourceURL=webpack://hotube/./src/frontend/js/main.js?");
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/frontend/js/main.js"]();
+/******/ 	__webpack_modules__["./src/client/js/main.js"]();
 /******/ 	
 /******/ })()
 ;
