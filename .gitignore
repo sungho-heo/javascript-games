@@ -7,3 +7,5 @@ hotube/node_modules
 hotube/.env
 #uploads
 hotube/uploads
+#assets
+hotube/assets
