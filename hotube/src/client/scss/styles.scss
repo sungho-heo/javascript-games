@@ -10,10 +10,13 @@
 
 //components
 @import "./components/shared.scss";
+@import "./components/forms.scss";
 
 // pages
 @import "./pages/home.scss";
-
+@import "./pages/social-login.scss";
+@import "./pages/profile.scss";
+@import "./pages/edit-profile.scss";
 
 
 body {
@@ -28,6 +31,7 @@ main {
     margin: 0 auto;
     margin-top: 100px;
 }
-a {
+
+a{
     color: white;
 }

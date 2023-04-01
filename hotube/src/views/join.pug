@@ -12,6 +12,7 @@ block content
             input(type="text", name="nickname",required, placeholder="Nickname" )
             input(type="text", name="location",required, placeholder="Location" )
             input(type="submit", value="Join")
-    hr
-    span Already have an account? 
-    a(href="/login") Log in
+            include partials/social-login.pug
+        div.auth-switch
+            span Already have an account? 
+            a(href="/login") Log in &rarr;
