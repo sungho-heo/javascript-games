@@ -9,3 +9,6 @@ hotube/.env
 hotube/uploads
 #assets
 hotube/assets
+
+# .DS_Store
+.DS_Store
