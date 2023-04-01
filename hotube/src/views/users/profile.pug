@@ -1,8 +1,0 @@
-extends ../base.pug
-include ../mixins/video.pug
-
-block content
-    each video in user.videos
-            +video(video)
-    else
-        h3 Sorry nothing found.
