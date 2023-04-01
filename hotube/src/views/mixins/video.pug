@@ -4,13 +4,9 @@ mixin video(video)
         div.video-mixin__info
             span.video-mixin__title=video.title
             div.video-mixin__meta
-                span #{video.owner.nickname}
+                if !video.owner.nickname
+                    span #{user.nickname}
+                else
+                    span #{video.owner.nickname}
                 br  
-                span #{video.meta.views} #{video.meta.views ===1 || video.meta.views ===0 ? "view" : "views"}
-
-        //- p #{video.meta.views} #{video.meta.views ===1 || video.meta.views ===0 ? "view" : "views"}
-        //- ul
-        //-     each hashtags in video.hashtags
-        //-         li=hashtags
-        //- small=video.createdAt
-        //- hr  
+                span #{video.meta.views} #{video.meta.views ===1 || video.meta.views ===0 ? "view" : "views"}     

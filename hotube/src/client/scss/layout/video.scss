@@ -1,5 +1,6 @@
 // mixin videos
 .video-mixin{
+    text-decoration: none;
     .video-mixin__thumb{
         height: 150px;
         width: 100%;
@@ -19,3 +20,5 @@
         }
     }
 }
+
+
