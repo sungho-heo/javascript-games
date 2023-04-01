@@ -6,7 +6,7 @@ block content
         p=video.description
         small=video.createdAt
     div
-        smaall Uploaded by
+        small Uploaded by
             a(href=`/users/${video.owner._id}`) #{video.owner.username}
         p #{video.meta.views} #{video.meta.views ===1 || video.meta.views===0 ? "view" : "views"}
         hr

@@ -2,9 +2,8 @@ extends base.pug
 include mixins/video.pug
 
 block content
-    h1 Welcome to hotube Home!
-    hr
-    each video in videos
-        +video(video)
-    else
-        h3 Sorry nothing found.
+    div.video__grid
+        each video in videos
+            +video(video)
+        else
+            span.empty__message Sorry nothing found.

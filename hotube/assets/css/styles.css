@@ -51,11 +51,110 @@ table {
   border-spacing: 0;
 }
 
+header {
+  padding: 30px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .header__logo {
+  color: #E6D479;
+  font-size: 35px;
+}
+header ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header ul li {
+  margin-right: 30px;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+header ul i {
+  font-size: 20px;
+}
+header .header__btn {
+  background-color: white;
+  color: #202124;
+  padding: 5px 10px;
+  border-radius: 20%;
+}
+
+footer {
+  text-align: center;
+  font-size: 15px;
+  margin-top: 60px;
+  opacity: 0.7;
+}
+
+.video-mixin .video-mixin__thumb {
+  height: 150px;
+  width: 100%;
+  border-radius: 15px;
+  background-color: white;
+}
+.video-mixin .video-mixin__info {
+  padding: 0 50px;
+}
+.video-mixin .video-mixin__info .video-mixin__title {
+  font-size: 17px;
+  display: block;
+  margin-top: 15px;
+}
+.video-mixin .video-mixin__info .video-mixin__meta {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.search__form {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  max-width: 500px;
+  font-weight: 400;
+}
+.search__form input {
+  width: 50px;
+  all: unset;
+  padding: 5px 15px;
+  border-radius: 10px;
+  background-color: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+.search__form input[type=submit] {
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  padding: 10px;
+}
+
+.empty__message {
+  margin-bottom: 65px;
+  font-size: 20px;
+}
+
+.video__grid {
+  display: grid;
+  gap: 50px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: aliceblue;
+  color: white;
+  background-color: #202124;
+}
+
+main {
+  max-width: 1450px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 100px;
 }
 
 a {
-  display: flex;
+  color: white;
 }

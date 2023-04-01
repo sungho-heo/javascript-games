@@ -3,7 +3,7 @@ import User from "../models/User";
 
 // callback 방식을 사용하려는데 최신버전은 callback문법을 사용할수없어서 promise로 구현함.
 export const homeVideo = async (req, res) => {
-  const videos = await Video.find({});
+  const videos = await Video.find({}).populate("owner");
   return res.render("home", { pageTitle: "Home", videos: videos });
 };
 
