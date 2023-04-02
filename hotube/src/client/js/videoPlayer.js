@@ -9,15 +9,23 @@ const handlePlayBtn = (e) => {
         video.play();
     } else {
         video.pause();
-    }  
+    }
+    playBtn.innerText = video.paused ? "Play" : "Pause";
 };
 
-const handleMuteBtn = (e) => { };
+const handleMuteBtn = (e) => { 
+    if (video.muted) {
+        video.muted = false;
 
-const handlePause = () => (playBtn.innerText = "Play");
-const handlePlay = () => (playBtn.innerText = "Pause");
+    } else {
+        video.muted = true;
+    }
+    muteBtn.innerText = video.muted ? "Mute" : "Unmute";
+    volume.value = video.muted ? 0 : 0.5;
+};
+
 
 playBtn.addEventListener("click", handlePlayBtn);
 muteBtn.addEventListener("click", handleMuteBtn);
-video.addEventListener("pause", handlePause);
-video.addEventListener("play", handlePlay);
+
+
