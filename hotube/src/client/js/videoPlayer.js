@@ -10,6 +10,16 @@ let volumeValue = 0.5;
 video.volume = volumeValue;
 playBtn.innerText = "Play";
 
+const formatTime = (seconds) => {
+    let time = seconds;
+    if (time < 3600) {
+        time = new Date(time * 1000).toISOString().substring(14, 19);
+    } else {
+        time = new Date(time * 1000).toISOString().substring(11, 19);
+    }
+    return time;
+};
+
 const handlePlayBtn = (event) => {
     if (video.paused) {
         video.play();
@@ -43,11 +53,11 @@ const handleVolumeChange = (event) => {
 };
 
 const handleTotalTime = () => {
-    totalTime.innerText =  Math.floor(video.duration);
+    totalTime.innerText =  formatTime(Math.floor(video.duration));
 };
 
 const handleTimeUpdate = () => {
-    currentTime.innerText = Math.floor(video.currentTime);
+    currentTime.innerText = formatTime(Math.floor(video.currentTime));
 }
 
 playBtn.addEventListener("click", handlePlayBtn);
