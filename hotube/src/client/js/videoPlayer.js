@@ -35,13 +35,12 @@ const formatTime = (seconds) => {
 
 // video play function
 const handlePlayBtn = (event) => {
-    console.log(playIcon.classList.value);
     if (video.paused) {
         video.play();
     } else {
         video.pause();
     }
-    playIcon.classList = video.paused ? "fa-regular fa-circle-play" : "fa-regular fa-circle-stop";
+    playIcon.classList = video.paused ? "fa-regular fa-circle-play" : "fa-solid fa-pause";
 };
 
 //mute function
@@ -59,17 +58,17 @@ const handleMuteBtn = (event) => {
 // volume function
 const handleVolumeChange = (event) => {
     const value = event.target.value;
-    if (video.volume===0) {
-        video.muted = true;
-    } else {
+    volumeValue = value
+    video.volume = volumeValue
+    if (video.volume > 0.6) {
         video.muted = false;
+        muteIcon.classList = "fa-solid fa-volume-high";
+    } else if (video.volume !== 0) {
+        muteIcon.classList = "fa-solid fa-volume-low";
+    } else if (video.volume === 0) {
+        muteIcon.classList = "fa-solid fa-volume-xmark";
     }
-    volumeValue = value;
-    video.volume = volumeValue;
-    muteIcon.classList = video.volume === 0 ? "fa-solid fa-volume-xmark" : "fa-solid fa-volume-low";
-    muteIcon.classList = video.volume > 0.5 ? "fa-solid fa-volume-high" : "fa-solid fa-volume-low";
 };
-
 
 // timline and totaltime connecttime function
 const handleTotalTime = () => {
@@ -125,10 +124,43 @@ const handleMouseLeave = () => {
     leaveMouseTimeout = setTimeout(hideControl, 3000);
 };
 
+const handleVideoClick = (event) => {
+    if (video.paused) {
+        video.play()
+    } else {
+        video.pause()
+    }
+    playIcon.classList = video.paused
+        ? "fa-regular fa-circle-play"
+        : "fa-solid fa-pause";
+};
+
+const handleVideoDubClick = (event) => {
+    if (document.fullscreenElement === null) {
+        videoContainer.requestFullscreen()
+    } else {
+        document.exitFullscreen()
+    }
+    fullScreenIcon.classList =
+        document.fullscreenElement === null
+            ? "fa-solid fa-compress"
+            : "fa-solid fa-expand";
+};
+
+// keybord spacebar play
+const handleSpacebarDown = (event) => {
+    if (event.code === "Space") {
+        handlePlayBtn();  
+    }
+}
+
 // Event handle
 playBtn.addEventListener("click", handlePlayBtn);
 muteBtn.addEventListener("click", handleMuteBtn);
 volume.addEventListener("input", handleVolumeChange);
+video.addEventListener("click", handleVideoClick);
+video.addEventListener("dblclick", handleVideoDubClick);
+document.addEventListener("keydown", handleSpacebarDown);
 video.readyState>=2 ?  handleTotalTime() : video.addEventListener("loadedmetadata", handleTotalTime);
 video.addEventListener("timeupdate", handleTimeUpdate);
 timeLine.addEventListener("input", handleTimeLineChange);

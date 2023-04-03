@@ -27,6 +27,9 @@
         padding: 15px;
         left: 0;
         box-sizing: border-box;
+        i,input[type="range"]{ 
+            cursor: pointer;
+        }
         .videoControls__play{
             display: flex;
         }
