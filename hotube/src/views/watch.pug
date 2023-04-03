@@ -19,15 +19,15 @@ block content
             div.videoControls__fullScreen
                 span#fullScreen
                     i.fa-solid.fa-expand
-    //- div
-            p=video.description
-            small=video.createdAt
-        div
-            small Uploaded by
-                a(href=`/users/${video.owner._id}`) #{video.owner.username}
-            p #{video.meta.views} #{video.meta.views ===1 || video.meta.views===0 ? "view" : "views"}
-            hr
-        if String(video.owner._id) === String(user._id)
-            a(href=`${video.id}/edit`) Edit video &rarr;
+    div
+        p Description: #{video.description}
+        small=video.createdAt
+    div
+        small Uploaded by 
+            a(href=`/users/${video.owner._id}`) #{video.owner.username}
+        p #{video.meta.views} #{video.meta.views ===1 || video.meta.views===0 ? "view" : "views"}
+        hr
+    if String(video.owner._id) === String(user._id)
+        a(href=`${video.id}/edit`) Edit video &rarr;
 block scripts
     script(src="/static/js/videoPlayer.js")
