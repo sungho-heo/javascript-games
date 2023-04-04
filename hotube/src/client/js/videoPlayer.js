@@ -124,6 +124,7 @@ const handleMouseLeave = () => {
     leaveMouseTimeout = setTimeout(hideControl, 3000);
 };
 
+// video click handle
 const handleVideoClick = (event) => {
     if (video.paused) {
         video.play()
@@ -154,19 +155,26 @@ const handleSpacebarDown = (event) => {
     }
 }
 
+const handelVideoEnded = () => {
+    const id = videoContainer.dataset.id;
+    fetch("/videos/id/view", {
+        method: "POST",
+    });
+}
 // Event handle
 playBtn.addEventListener("click", handlePlayBtn);
 muteBtn.addEventListener("click", handleMuteBtn);
 volume.addEventListener("input", handleVolumeChange);
 video.addEventListener("click", handleVideoClick);
 video.addEventListener("dblclick", handleVideoDubClick);
-document.addEventListener("keydown", handleSpacebarDown);
 video.readyState>=2 ?  handleTotalTime() : video.addEventListener("loadedmetadata", handleTotalTime);
 video.addEventListener("timeupdate", handleTimeUpdate);
+video.addEventListener("ended", handelVideoEnded);
 timeLine.addEventListener("input", handleTimeLineChange);
 fullScreenBtn.addEventListener("click", handleFullScreen);
 videoContainer.addEventListener("mousemove", handleMouseMove)
 videoContainer.addEventListener("mouseleave", handleMouseLeave)
+document.addEventListener("keydown", handleSpacebarDown);
 
 
 
