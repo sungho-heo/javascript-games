@@ -1,4 +1,5 @@
 const recoderBtn = document.getElementById("recoderBtn");
+const video = document.getElementById("preview");
 
 
 const handleRecoderBtn = async() => {
@@ -6,7 +7,8 @@ const handleRecoderBtn = async() => {
         audio: true,
         video: true,
     });
-    console.log(stream);
+    video.srcObject = stream;
+    video.play();
 };
     
 recoderBtn.addEventListener("click", handleRecoderBtn);
