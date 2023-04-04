@@ -155,12 +155,12 @@ const handleSpacebarDown = (event) => {
     }
 }
 
-const handelVideoEnded = () => {
+const handelVideoEnded = async() => {
     const id = videoContainer.dataset.id;
-    fetch("/videos/id/view", {
+    await fetch(`/api/videos/${id}/view`, {
         method: "POST",
     });
-}
+};
 // Event handle
 playBtn.addEventListener("click", handlePlayBtn);
 muteBtn.addEventListener("click", handleMuteBtn);
