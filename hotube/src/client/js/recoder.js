@@ -63,7 +63,7 @@ const handleDownload = async () => {
 };
 
 const handleStop = () => {
-    recoderBtn.innerText = "Download Recorder"
+    recoderBtn.innerText = "Download"
     recoderBtn.removeEventListener("click", handleStop)
     recoderBtn.addEventListener("click", handleDownload)
     recorder.stop()
@@ -87,7 +87,10 @@ const handleStart = () => {
 const init = async () => {
     stream = await navigator.mediaDevices.getUserMedia({
         audio: true,
-        video: true,
+        video: {
+            width: 1024,
+            height: 526,
+        }
     })
     video.srcObject = stream
     video.play()
