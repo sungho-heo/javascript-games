@@ -8,17 +8,19 @@ let stream;
 let recorder;
 let videoFile;
 
-const handleDownload = async() => {
+const handleDownload = async () => {
+    const fileName = "recording.webm";
+    const tumbName = "thumbnail.jpg";
     const ffmpeg = createFFmpeg({ log: true });
     await ffmpeg.load();
 
-    ffmpeg.FS("writeFile", "recording.webm", await fetchFile(videoFile));
+    ffmpeg.FS("writeFile", fileName, await fetchFile(videoFile));
 
-    await ffmpeg.run("-i", "recording.webm", "output.mp4");
-    await ffmpeg.run("-i", "recording.webm", "-ss", "00:00:01", "-vframes", "1", "thumbnail.jpg");
+    await ffmpeg.run("-i", fileName, "-r", "60", "output.mp4");
+    await ffmpeg.run("-i", fileName, "-ss", "00:00:01", "-vframes", "1", tumbName);
 
     const mp4File = ffmpeg.FS("readFile", "output.mp4");
-    const thumbFile = ffmpeg.FS("readFile", "thumbnail.jpg");
+    const thumbFile = ffmpeg.FS("readFile", tumbName);
 
     const mp4Blob = new Blob([mp4File.buffer], { type: "video/mp4" });
     const thumbBlob = new Blob([thumbFile.buffer], { type: "image/jpg" });
@@ -36,6 +38,15 @@ const handleDownload = async() => {
     thumbA.href = thumbUrl
     thumbA.download = "Mythumbnail.jpg"
     thumbA.click();
+
+    ffmpeg.FS("unlink", fileName);
+    ffmpeg.FS("unlink", "output.mp4");
+    ffmpeg.FS("unlink", tumbName);
+
+    URL.revokeObjectURL(mp4Url);
+    URL.revokeObjectURL(thumbUrl);
+    URL.revokeObjectURL(videoFile);
+
 };
 
 const handleStop = () => {
