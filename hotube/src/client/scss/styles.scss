@@ -37,3 +37,42 @@ main {
 a{
     color: white;
 }
+
+@keyframes goAway {
+    from{
+        transform:none;
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+        transform: translateY(-50px);
+
+    }
+}
+
+
+.message {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 200px;
+    border-radius: 10000px;
+    padding: 10px 20px;
+    text-align: center;
+    animation: goAway .5s ease-in-out forwards;
+    animation-delay: 2s;
+    &.info{
+        background-color: #474CEF;
+        color: white;
+    }
+    &.error{
+        background-color: #FF0101;
+        color: white;
+    }
+    &.success{
+        background-color: #01be9f;
+        color: black;
+    }
+}
