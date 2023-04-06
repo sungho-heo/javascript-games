@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
+import flash from "express-flash";
 import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
     res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
     next();
 });
+app.use(flash());
 app.use("/", rootRouter); // home url router의 /안의 또다른 url router를 찾음 동일하면 그 해당하는 url페이지를 보여줌
 app.use("/users", userRouter); // userrouter 안에 있는 url router를 찾음 해당하는 페이지를 찾으면 그 해당하는 페이지를 보여줌.
 app.use("/videos", videoRouter);

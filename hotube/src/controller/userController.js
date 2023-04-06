@@ -145,7 +145,9 @@ export const githubCallback = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  req.session.destroy();
+  req.session.loggedIn = false;
+  // req.session.destroy();
+  req.flash("error", "See you later");
   return res.redirect("/");
 };
 
@@ -192,6 +194,7 @@ export const postEdit = async (req, res) => {
 
 export const getChangePassword = (req, res) => {
   if (req.session.user.socialOnly) {
+    req.flash("error", "Can't change password");
     return res.redirect("/")
   }
   return res.render("users/change-password", { pageTitle: "Change-Password" });

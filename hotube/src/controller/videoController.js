@@ -21,6 +21,7 @@ export const getEdit = async(req, res) => {
   const video = await Video.findById(id);
   const userid = req.session.user._id;
   if (String(video.owner) !== String(userid)) { // video.owner id 는 타입이 다른 그래서 타입도 맞춰줘야함.
+    req.flash("error", "Video owner not found.");
     return res.status(403).redirect("/");
   };
   if (video === null) {
@@ -40,6 +41,7 @@ export const postEdit = async(req, res) => {
     return res.status(404).render("404", { pageTitle: "Video not found" })
   }
   if (String(video.owner) !== String(userid)) {// video.owner id 는 타입이 다른 그래서 타입도 맞춰줘야함.
+    req.flash("error", "Video owner not found.");
     return res.status(403).redirect("/")
   }
   await Video.findByIdAndUpdate(id, {
@@ -88,6 +90,7 @@ export const deleteVideo = async (req, res) => {
   };
   if (String(video.owner) !== String(userid)) {
       // video.owner id 는 타입이 다른 그래서 타입도 맞춰줘야함.
+    req.flash("error", "Video owner not found.");
     return res.status(403).redirect("/");
   };
   await Video.findByIdAndDelete(id);
