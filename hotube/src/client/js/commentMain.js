@@ -9,9 +9,10 @@ const handleSubmit = (event) => {
     const id = videoContainer.dataset.id;
     fetch(`/api/videos/${id}/comment`, {
         method: 'POST',
-        body: {
-            text,
-        },
+        headers: {
+            'Content-Type': "application/json",
+    },
+        body: JSON.stringify({text:text}),
     });
 };
 

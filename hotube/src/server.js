@@ -17,7 +17,7 @@ app.set("views", process.cwd() + "/src/views")
 app.set("view engine", "pug");
 app.use(loggerMorgan); // logger는 사용자가 어떤 페이지를 향하며 http method를 어떤걸 하는지 확인하기 위함.
 app.use(express.urlencoded({ extended: true })); //pug의 body데이터 받아오기위해서 필요한 작업임.
-
+app.use(express.json());
 app.use(
     session({
         secret: process.env.SECRET,
