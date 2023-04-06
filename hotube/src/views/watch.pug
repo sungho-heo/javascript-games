@@ -19,12 +19,11 @@ block content
             div.videoControls__fullScreen
                 span#fullScreen
                     i.fa-solid.fa-expand
-    div
-        p Description: #{video.description}
-        small=video.createdAt
-    div
-        small Uploaded by 
-            a(href=`/users/${video.owner._id}`) #{video.owner.username}
+    div.video-data
+        p.video__title Title: #{video.title}
+        small.video__owner Uploaded by 
+            a(href=`/users/${video.owner._id}`)=video.owner.username   
+        small.video__createdAt= new Date(video.createdAt).toLocaleString("ko-kr", {weekday: "long", year:"numeric", month:"long", day:"numeric"})
         p #{video.meta.views} #{video.meta.views ===1 || video.meta.views===0 ? "view" : "views"}
         hr
     if String(video.owner._id) === String(user._id)

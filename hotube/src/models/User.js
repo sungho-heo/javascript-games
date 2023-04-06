@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
     password: String,
     nickname: { type: String, required: true },
     location: String,
-    videos: [{type: mongoose.Types.ObjectId ,ref:"Video"}],
+    videos: [{ type: mongoose.Types.ObjectId, ref: "Video" }],
+    comments: [{type: mongoose.Types.ObjectId, ref: "Comment"}],
 });
 userSchema.pre("save", async function () {
     if (this.isModified("password")) {
