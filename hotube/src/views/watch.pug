@@ -28,11 +28,13 @@ block content
         hr
     if String(video.owner._id) === String(user._id)
         a(href=`${video.id}/edit`) Edit video &rarr;
-    div.video__comments
-        form.video__comments-form#commentForm
-            textarea(cols="30", rows="10", placeholder="Comments")
-            button Add comment 
+    if loggedIn        
+        div.video__comments
+            form.video__comments-form#commentForm
+                textarea(cols="30", rows="10", placeholder="Comments")
+                button Add comment 
     
 block scripts
     script(src="/static/js/videoPlayer.js")
-    script(src="/static/js/commentMain.js")
+    if loggedIn
+        script(src="/static/js/commentMain.js")
