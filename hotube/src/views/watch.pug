@@ -38,9 +38,8 @@ block content
             each comment in video.comments.reverse()
                 li.video__comment
                     i.fas.fa-comment
-                    span=video.owner.username  
-                    |  #{comment.text}                
-                    small.video__createdAt= new Date(video.createdAt).toLocaleString("ko-kr", {weekday: "long", year:"numeric", month:"long", day:"numeric"})
+                    span  #{comment.text}                
+
     
 block scripts
     script(src="/static/js/videoPlayer.js")
