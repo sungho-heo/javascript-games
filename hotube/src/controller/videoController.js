@@ -1,4 +1,5 @@
 import Video from "../models/Video";
+import Comment from "../models/Comment";
 import User from "../models/User";
 
 // callback 방식을 사용하려는데 최신버전은 callback문법을 사용할수없어서 promise로 구현함.
@@ -123,8 +124,18 @@ export const pageViewCount = async (req, res) => {
   return res.sendStatus(200);
 };
 
-export const createComment = (req, res) => {
-  console.log(req.params);
-  console.log(req.body);
-  res.end();
+export const createComment = async (req, res) => {
+  const id = req.params.id;
+  const text = req.body.text;
+  const video = await Video.findById(id);
+  const user = req.session.user;
+  if (!video) {
+    return res.sendStatus(404);
+  }
+  const comment = await Comment.create({
+    text: text,
+    owner: user._id,
+    video: id,
+  })
+  return res.sendStatus(201);
 };
