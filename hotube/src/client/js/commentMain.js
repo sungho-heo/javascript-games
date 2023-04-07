@@ -2,12 +2,15 @@ const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
 
 
-const handleSubmit = (event) => {
+const handleSubmit = async (event) => {
     event.preventDefault();
     const textarea = form.querySelector("textarea");
     const text = textarea.value;
     const id = videoContainer.dataset.id;
-    fetch(`/api/videos/${id}/comment`, {
+    if (text.trim() === "") {
+        return ;
+    }
+    await fetch(`/api/videos/${id}/comment`, {
         method: 'POST',
         headers: {
             'Content-Type': "application/json",
