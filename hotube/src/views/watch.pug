@@ -39,7 +39,8 @@ block content
                 li.video__comment(data-id=comment.id)
                     i.fas.fa-comment
                     span  #{comment.text}
-                    span ❌                
+                    if String(comment.owner) === String(user._id)
+                        span.video__comment-delete ❌                
 
     
 block scripts

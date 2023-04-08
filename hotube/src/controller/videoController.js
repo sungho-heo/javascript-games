@@ -95,6 +95,12 @@ export const deleteVideo = async (req, res) => {
     req.flash("error", "Video owner not found.");
     return res.status(403).redirect("/");
   };
+  const user = await User.findById(userid);
+  if (!user) {
+    return res.sendStatus(404);
+  };
+  user.videos.splice(user.videos.indexOf(video._id));
+  user.save();
   await Video.findByIdAndDelete(id);
   return res.redirect("/");
 };
@@ -119,7 +125,6 @@ export const pageViewCount = async (req, res) => {
     return res.sendStatus(404);
   };
   video.meta.views = video.meta.views + 1;
-  console.log(video.meta.views);
   await video.save();
   return res.sendStatus(200);
 };
@@ -141,3 +146,20 @@ export const createComment = async (req, res) => {
   video.save();
   return res.status(201).json({commentId: comment._id});
 };
+
+export const deleteComment = async (req, res) => {
+  const id = req.params.id;
+  const userId = req.session.user._id;
+  const comment = await Comment.findById(id);
+  if (String(comment.owner) !== String(userId)) {
+    return res.sendStatus(404);
+  }
+  const video = await Video.findById(comment.video);
+  video.comments.splice(video.comments.indexOf(comment._id));
+  video.save();
+
+  await Comment.findByIdAndDelete(comment._id);
+  return res.sendStatus(200);
+}
+
+  
