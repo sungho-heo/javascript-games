@@ -11,7 +11,6 @@ module.exports = {
     recoder: basePath + "recoder.js",
     commentMain: basePath + "commentMain.js",
   },
-  watch: true,
   plugins: [new MiniCssExtractPlugin({
     filename: "css/styles.css",
   }),

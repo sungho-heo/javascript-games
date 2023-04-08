@@ -165,7 +165,6 @@ export const postEdit = async (req, res) => {
   const updateEmail = req.session.user.email;
   const updateUsername = req.session.user.username;
   const file = req.file;
-  console.log(file);
   if (email !== updateEmail || username !== updateUsername) {
     const findUser = await User.findOne({
       $or: [{ email: updateEmail, username: updateUsername }],
