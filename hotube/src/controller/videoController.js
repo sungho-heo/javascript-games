@@ -99,7 +99,7 @@ export const deleteVideo = async (req, res) => {
   if (!user) {
     return res.sendStatus(404);
   };
-  user.videos.splice(user.videos.indexOf(video._id));
+  user.videos.splice(user.videos.indexOf(video._id),1);
   user.save();
   await Video.findByIdAndDelete(id);
   return res.redirect("/");
@@ -155,7 +155,7 @@ export const deleteComment = async (req, res) => {
     return res.sendStatus(404);
   }
   const video = await Video.findById(comment.video);
-  video.comments.splice(video.comments.indexOf(comment._id));
+  video.comments.splice(video.comments.indexOf(comment._id),1);
   video.save();
 
   await Comment.findByIdAndDelete(comment._id);
